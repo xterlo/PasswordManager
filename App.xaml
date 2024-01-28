@@ -9,12 +9,15 @@
         <ResourceDictionary>
 
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Style/TextBoxStyle.xaml"/>
+                <ResourceDictionary Source="Style/MainTextStyle.xaml"/>
+                <ResourceDictionary Source="Style/ButtonStyle.xaml"/>
                 <!--<ResourceDictionary Source="Styles/RadioButtonMainMenuStyle.xaml"/>
                 <ResourceDictionary Source="Styles/ControllButtons.xaml"/>
                 <ResourceDictionary Source="Styles/MainTextStyle.xaml"/>
-                <ResourceDictionary Source="Styles/RoundedTextBlock.xaml"/>
+
                 <ResourceDictionary Source="Styles/Animation/ViewPickerAnimation.xaml"/>
-                <ResourceDictionary Source="Styles/WSDSButtonStyle.xaml"/>
+
                 <ResourceDictionary Source="Styles/ButtonStyle.xaml"/>-->
             </ResourceDictionary.MergedDictionaries>
 
