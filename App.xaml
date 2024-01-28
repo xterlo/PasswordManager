@@ -24,6 +24,12 @@
             <DataTemplate DataType="{x:Type viewModel:MainWindowViewModel}">
                 <view:MainWindow/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:AuthWindowViewModel}">
+                <view:AuthWindow/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:HomeWindowViewModel}">
+                <view:HomeWindow/>
+            </DataTemplate>
 
             <SolidColorBrush  x:Key="backgroundColor">#06052a</SolidColorBrush>
             <SolidColorBrush  x:Key="primaryBackgroundColor">#052e59</SolidColorBrush>

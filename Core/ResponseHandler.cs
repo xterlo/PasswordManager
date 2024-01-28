@@ -2,6 +2,7 @@
 using PasswordManager.Models;
 using RestSharp;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Policy;
@@ -18,18 +19,30 @@ namespace PasswordManager.Core
             public string password { get;set; }
         }
 
-        public static ResponseModel SendAuth(string login,string password)
+        public static async Task<ResponseModel> SendAuth(string login,string password)
         {
-            
-            AuthData data = new AuthData() { login=login, password = password };
-            var client = new RestClient("https://localhost:32776/");
-            var request = new RestRequest("/api/Auth/Auth");
-            request.Method = Method.Post;
-            request.AddHeader("Content-Type", "application/json");
-            request.RequestFormat = DataFormat.Json;
-            request.AddJsonBody(JsonConvert.SerializeObject(data));
-            var response = client.ExecutePost(request);
-            return JsonConvert.DeserializeObject<ResponseModel>(response.Content);
+            try
+            {
+                AuthData data = new AuthData() { login = login, password = password };
+                var client = new RestClient("https://localhost:32776/");
+                var request = new RestRequest("/api/Auth/Auth");
+                request.Method = Method.Post;
+                request.AddHeader("Content-Type", "application/json");
+                request.RequestFormat = DataFormat.Json;
+                request.AddJsonBody(JsonConvert.SerializeObject(data));
+                var response = await client.ExecutePostAsync(request);
+                response.ThrowIfError();
+                return JsonConvert.DeserializeObject<ResponseModel>(response.Content);
+            }
+            catch(Exception ex)
+            {
+                return new ResponseModel()
+                {
+                    status = false,
+                    message = ex.Message,
+                    data = null
+                };
+            }
             
 
         }

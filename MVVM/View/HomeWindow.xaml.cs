@@ -16,15 +16,13 @@ using System.Windows.Shapes;
 namespace PasswordManager.MVVM.View
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для HomeWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class HomeWindow : UserControl
     {
-        public MainWindow()
+        public HomeWindow()
         {
             InitializeComponent();
         }
-
-
     }
 }

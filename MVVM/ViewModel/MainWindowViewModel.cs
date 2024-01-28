@@ -18,75 +18,22 @@ namespace PasswordManager.MVVM.ViewModel
             set { _Title = value; OnPropertyChanged(nameof(Title)); }
         }
 
-        private string _Status { get; set; }
-        public string Status
+        private object _CurrentView { get; set; }
+        public object CurrentView
         {
-            get => _Status;
-            set { _Status = value; OnPropertyChanged(nameof(Status)); }
-        }
-        
-        private SolidColorBrush _StatusColor { get; set; } = Brushes.Red;
-        public SolidColorBrush StatusColor
-        {
-            get => _StatusColor;
-            set { _StatusColor = value; OnPropertyChanged(nameof(StatusColor)); }
-        }
-
-        private string _Login { get; set; }
-        public string Login
-        {
-            get => _Login;
-            set { _Login = value; OnPropertyChanged(nameof(Login)); }
-        }
-
-        private string _Password { get; set; }
-        public object Password
-        {
-            get => _Password;
-            set { _Password = ConvertToUnsecureString(value as SecureString); OnPropertyChanged(nameof(Password)); }
-        }
-
-        private ICommand _AuthCommand { get; set; }
-        public ICommand AuthCommand
-        {
-            get=> _AuthCommand;
-            set => _AuthCommand = value;
-        }
-
-        private string ConvertToUnsecureString(SecureString secureString)
-        {
-            IntPtr unmanagedString = IntPtr.Zero;
-            try
+            get => _CurrentView;
+            set
             {
-                unmanagedString = Marshal.SecureStringToGlobalAllocUnicode(secureString);
-                string regularString = Marshal.PtrToStringUni(unmanagedString);
-                return regularString;
-            }
-            finally
-            {
-                Marshal.ZeroFreeGlobalAllocUnicode(unmanagedString);
+                _CurrentView = value;
+                OnPropertyChanged(nameof(CurrentView));
             }
         }
 
-        private void SendAuth()
-        {
-            ResponseModel response = ResponseHandler.SendAuth(Login, Password as string);
-            Status = response.message;
-            if (!response.status)
-            {
-                StatusColor = Brushes.Red;
-            }
-            else
-            {
-                StatusColor = Brushes.Green;
-            }
-
-        }
- 
 
         public MainWindowViewModel()
         {
-            AuthCommand = new RelayCommand(SendAuth);
+            CurrentView = new AuthWindowViewModel();
+
         }
     }
 }

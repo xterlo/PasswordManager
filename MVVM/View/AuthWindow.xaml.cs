@@ -16,15 +16,19 @@ using System.Windows.Shapes;
 namespace PasswordManager.MVVM.View
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для AuthWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class AuthWindow : UserControl
     {
-        public MainWindow()
+        public AuthWindow()
         {
             InitializeComponent();
         }
 
-
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (this.DataContext != null)
+            { ((dynamic)this.DataContext).Password = ((PasswordBox)sender).SecurePassword; }
+        }
     }
 }
