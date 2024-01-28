@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 using System.Security;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -88,6 +89,8 @@ namespace PasswordManager.MVVM.ViewModel
                 var JWTKey = currentUserKey.CreateSubKey("Settings");
                 JWTKey.SetValue("JWT", response.data.session);
                 JWTKey.SetValue("UserName", response.data.name);
+                System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
+                Application.Current.Shutdown();
             }
 
         }

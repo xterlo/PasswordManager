@@ -18,11 +18,11 @@ namespace PasswordManager.Core
     {
         readonly static string url = "https://localhost:32780/";
 
-        public class Response
-        {
+        public class Response {
             public bool status { get; set; }
             public string text { get; set; }
         }
+
         private class AuthData {
             public string login { get;set; }
             public string password { get;set; }
