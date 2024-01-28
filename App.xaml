@@ -31,8 +31,8 @@
                 <view:HomeWindow/>
             </DataTemplate>
 
-            <SolidColorBrush  x:Key="backgroundColor">#06052a</SolidColorBrush>
-            <SolidColorBrush  x:Key="primaryBackgroundColor">#052e59</SolidColorBrush>
+            <SolidColorBrush  x:Key="backgroundColor">#FF100F0F</SolidColorBrush>
+            <SolidColorBrush  x:Key="primaryBackgroundColor">#FF232323</SolidColorBrush>
             <SolidColorBrush  x:Key="mainColor">#b60055</SolidColorBrush>
             <SolidColorBrush  x:Key="primaryTextColor">#e1e8eb</SolidColorBrush>
         </ResourceDictionary>

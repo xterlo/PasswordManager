@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 
 namespace PasswordManager.Models
 {
+    public class ResponseModel<T>
+    {
+        public bool status { get; set; }
+        public string message { get; set; }
+        public T data { get; set; }
+    }
     public class ResponseModel
     {
         public bool status { get; set; }
@@ -17,5 +23,11 @@ namespace PasswordManager.Models
     {
         public string session { get; set; }
         public string name { get; set; }
+    }
+
+    public class ValidateData
+    {
+        public string name { get; set; }
+        public string role { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using PasswordManager.Core;
+﻿using Microsoft.Win32;
+using PasswordManager.Core;
 using PasswordManager.Models;
 using System;
 using System.Collections.Generic;
@@ -73,7 +74,7 @@ namespace PasswordManager.MVVM.ViewModel
 
         private async void SendAuth()
         {
-            ResponseModel response = await ResponseHandler.SendAuth(Login, Password as string);
+            ResponseModel<AuthData> response = await ResponseHandler.SendAuth(Login, Password as string);
             Status = response.message;
             if (!response.status)
             {
@@ -81,10 +82,16 @@ namespace PasswordManager.MVVM.ViewModel
             }
             else
             {
+                var b = response.data;
                 StatusColor = Brushes.Green;
+                var currentUserKey = Registry.CurrentUser.OpenSubKey("PasswordManager", true);
+                var JWTKey = currentUserKey.CreateSubKey("Settings");
+                JWTKey.SetValue("JWT", response.data.session);
+                JWTKey.SetValue("UserName", response.data.name);
             }
 
         }
+
 
 
         public AuthWindowViewModel()
